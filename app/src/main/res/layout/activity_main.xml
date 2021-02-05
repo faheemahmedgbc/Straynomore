@@ -4,26 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
     tools:context=".MainActivity">
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
         android:layout_marginBottom="24dp"
         android:fontFamily="@font/poppins"
         android:text="Don't have an account?"
-        android:textColor="#78909C"
+        android:textColor="#000000"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginRight="80dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="128dp"
-        android:layout_height="wrap_content"
+        android:layout_width="295dp"
+        android:layout_height="62dp"
         android:layout_marginBottom="48dp"
         android:background="@drawable/btn_bg"
         android:fontFamily="@font/poppins_medium"
@@ -31,6 +33,7 @@
         android:textAllCaps="false"
         android:textColor="#fff"
         android:textSize="18dp"
+        app:backgroundTint="#F5DD3E57"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -40,10 +43,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:fontFamily="@font/poppins"
+        android:autoLink="all"
+        android:fontFamily="sans-serif-black"
         android:text="Forgot Password?"
-        android:textColor="#78909C"
-        android:textSize="12dp"
+        android:textColor="#2B7DA6"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -63,6 +67,7 @@
         android:hint="Password"
         android:inputType="textPersonName"
         android:padding="8dp"
+        android:textColor="#000000"
         android:textColorHint="#37474F"
         android:textSize="17dp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
@@ -84,32 +89,46 @@
         android:hint="Username"
         android:inputType="textPersonName"
         android:padding="8dp"
+        android:textColor="#000000"
         android:textColorHint="#37474F"
         android:textSize="17dp"
         app:layout_constraintBottom_toTopOf="@+id/editText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="325dp"
-        android:layout_height="325dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/logo_animal" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
         android:layout_marginBottom="24dp"
         android:fontFamily="@font/poppins_medium"
         android:text="@string/create_account"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        android:layout_marginLeft="4dp" />
+        app:layout_constraintStart_toEndOf="@+id/textView" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="450dp"
+        android:layout_height="392dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_brightness_1_24" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="325dp"
+        android:layout_height="325dp"
+        android:layout_marginBottom="32dp"
+        android:clickable="false"
+        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/logo_animal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,7 +8,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.StrayNoMore">
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".wildlife_info"></activity>
+        <activity android:name=".create_post" />
+        <activity android:name=".map" />
+        <activity android:name=".forum" />
+        <activity android:name=".recovery" />
+        <activity android:name=".create_profile" />
+        <activity android:name=".edit_profile" />
+        <activity android:name=".Home" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
