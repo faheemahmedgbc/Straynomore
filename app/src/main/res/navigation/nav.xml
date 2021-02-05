@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/home2">
+    <activity
+        android:id="@+id/home2"
+        android:name="com.example.straynomore.Home"
+        android:label="activity_home"
+        tools:layout="@layout/activity_home" />
+    <activity
+        android:id="@+id/map"
+        android:name="com.example.straynomore.map"
+        android:label="activity_map"
+        tools:layout="@layout/activity_map" />
+    <activity
+        android:id="@+id/create_post"
+        android:name="com.example.straynomore.create_post"
+        android:label="activity_create_post"
+        tools:layout="@layout/activity_create_post" />
+    <activity
+        android:id="@+id/forum"
+        android:name="com.example.straynomore.forum"
+        android:label="activity_forum"
+        tools:layout="@layout/activity_forum" />
+</navigation>
