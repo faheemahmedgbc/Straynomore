@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".wildlife_info"></activity>
+        <activity android:name=".wildlife_info" />
         <activity android:name=".create_post" />
         <activity android:name=".map" />
         <activity android:name=".forum" />
