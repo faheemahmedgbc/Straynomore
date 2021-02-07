@@ -2,16 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/home"
         android:title="Home"
         android:icon="@drawable/ic_baseline_home"
         />
     <item
+        android:id="@+id/forum"
         android:title="Forum"
         android:icon="@drawable/ic_baseline_chat"
         />
     <item
+        android:id="@+id/create_post"
         android:title="Post"
         android:icon="@drawable/ic_baseline_pets"
         />
-    <item android:title="Search" android:icon="@drawable/ic_baseline_search"/>
+    <item
+        android:id="@+id/map"
+        android:title="Search"
+        android:icon="@drawable/ic_baseline_search"
+        />
 </menu>
