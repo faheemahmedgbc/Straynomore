@@ -47,7 +47,7 @@
         android:clickable="true"
         android:fontFamily="sans-serif-black"
         android:text="Forgot Password?"
-        android:textColor="#2B7DA6"
+        android:textColor="#2979FF"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_login"
         app:layout_constraintEnd_toEndOf="parent"
@@ -108,6 +108,7 @@
         android:clickable="true"
         android:fontFamily="@font/poppins_medium"
         android:text="Create account"
+        android:textColor="#2979FF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView" />
 
