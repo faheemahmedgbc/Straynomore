@@ -15,7 +15,7 @@
         app:srcCompat="@drawable/background__3_" />
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/img_profile_pic"
         android:layout_width="179dp"
         android:layout_height="165dp"
         android:layout_gravity="center_horizontal"
