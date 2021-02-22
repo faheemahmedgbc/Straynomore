@@ -17,7 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        android:layout_gravity="center_horizontal"
         app:srcCompat="@drawable/background__3_" />
 
     <TextView
@@ -31,6 +30,7 @@
         android:textColor="#000000"
         android:textSize="30sp"
         android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
