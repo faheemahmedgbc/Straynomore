@@ -22,7 +22,7 @@
         app:srcCompat="@drawable/background__3_" />
 
     <EditText
-        android:id="@+id/textView11"
+        android:id="@+id/txt_reg_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -42,7 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/user_spinner" />
 
     <EditText
-        android:id="@+id/textView12"
+        android:id="@+id/txt_reg_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -60,10 +60,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_reg_name" />
 
     <EditText
-        android:id="@+id/textView13"
+        android:id="@+id/txt_reg_pass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -81,10 +81,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_reg_email" />
 
     <EditText
-        android:id="@+id/textView14"
+        android:id="@+id/txt_reg_pass_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -102,7 +102,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_reg_pass" />
 
     <Button
         android:id="@+id/btn_register"
@@ -118,7 +118,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.468"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_reg_pass_confirm" />
 
     <Spinner
         android:id="@+id/user_spinner"

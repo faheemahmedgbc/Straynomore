@@ -54,7 +54,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/txt_password_login"
         android:layout_width="325dp"
         android:layout_height="50dp"
         android:layout_marginBottom="32dp"
@@ -76,7 +76,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/txt_username_login"
         android:layout_width="325dp"
         android:layout_height="50dp"
         android:layout_marginBottom="16dp"
@@ -93,7 +93,7 @@
         android:textColor="#000000"
         android:textColorHint="#37474F"
         android:textSize="17dp"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/txt_password_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
@@ -116,7 +116,7 @@
         android:id="@+id/imageView2"
         android:layout_width="450dp"
         android:layout_height="392dp"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        app:layout_constraintBottom_toTopOf="@+id/txt_username_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
@@ -129,7 +129,7 @@
         android:layout_height="325dp"
         android:layout_marginBottom="32dp"
         android:clickable="false"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        app:layout_constraintBottom_toTopOf="@+id/txt_username_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/logo_animal" />
