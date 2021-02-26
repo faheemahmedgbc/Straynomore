@@ -59,6 +59,19 @@ public class MainActivity extends AppCompatActivity {
             String userIn = username.getText().toString();
             String passIn = password.getText().toString();
 
+            if(userIn.isEmpty())
+            {
+                username.setError("Field cannot be empty");
+                username.requestFocus();
+                return;
+            }
+            if(passIn.isEmpty())
+            {
+                password.setError("Field cannot be empty");
+                password.requestFocus();
+                return;
+            }
+
             mAuth.signInWithEmailAndPassword(userIn, passIn).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -69,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else
                     {
-                        Toast.makeText(getApplicationContext(), "Failed to log in", Toast.LENGTH_SHORT)
+                        Toast.makeText(getApplicationContext(), "User", Toast.LENGTH_SHORT)
                                 .show();
                     }
                 }

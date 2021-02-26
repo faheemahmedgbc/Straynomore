@@ -38,7 +38,7 @@ public class map extends AppCompatActivity {
 
         wildlife.setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(),wildlife_info.class));
-
+            finish();
         });
 
         Bundle mapViewBundle = null;
@@ -46,12 +46,8 @@ public class map extends AppCompatActivity {
             mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
         }
 
-
-
         mapView.onCreate(mapViewBundle);
         mapView.getMapAsync(this::onMapReady);
-
-
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
@@ -142,15 +138,16 @@ public class map extends AppCompatActivity {
 
     @Override
     public void onPause() {
-        mapView.onPause();
         super.onPause();
+        mapView.onPause();
     }
 
     @Override
     public void onDestroy() {
-        mapView.onDestroy();
         super.onDestroy();
+        mapView.onDestroy();
     }
+
 
     @Override
     public void onLowMemory() {
