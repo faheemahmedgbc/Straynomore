@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1066994639407",
+    "project_id": "straynomore-c0efc",
+    "storage_bucket": "straynomore-c0efc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1066994639407:android:47b9b84cc8b9d403e99cda",
+        "android_client_info": {
+          "package_name": "com.example.straynomore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1066994639407-da0vl0hkml6h27furcecm98sru0gthbi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7IHs0PNwym7TyVmgBSiddmqcPAbgNKo4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1066994639407-da0vl0hkml6h27furcecm98sru0gthbi.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1066994639407-rulh2k9l7g3orkqbqlm5ojq7i0fhldo3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.straynomore"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

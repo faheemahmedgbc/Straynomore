@@ -58,7 +58,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/img_profile_image"
         android:layout_width="194dp"
         android:layout_height="233dp"
         android:layout_gravity="center_horizontal"

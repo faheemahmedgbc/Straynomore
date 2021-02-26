@@ -2,18 +2,32 @@ package com.example.straynomore;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
-import org.w3c.dom.Text;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
+    private EditText username, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
         TextView register = findViewById(R.id.txt_register);
         TextView forgot = findViewById(R.id.txt_forgot);
+
+        mAuth = FirebaseAuth.getInstance();
 
         forgot.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, forgot_password.class));
@@ -36,8 +52,29 @@ public class MainActivity extends AppCompatActivity {
         });
 
         login.setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, Home.class));
-            finish();
+
+            username = findViewById(R.id.txt_username_login);
+            password = findViewById(R.id.txt_password_login);
+
+            String userIn = username.getText().toString();
+            String passIn = password.getText().toString();
+
+            mAuth.signInWithEmailAndPassword(userIn, passIn).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful())
+                    {
+                        startActivity(new Intent(MainActivity.this, Home.class));
+                        finish();
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "Failed to log in", Toast.LENGTH_SHORT)
+                                .show();
+                    }
+                }
+            });
         });
     }
+
 }
