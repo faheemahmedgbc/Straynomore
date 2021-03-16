@@ -33,7 +33,10 @@
         <activity android:name=".wildlife_info" />
         <activity android:name=".create_post" />
         <activity android:name=".map" />
-        <activity android:name=".forum" />
+        <activity
+            android:name=".forum"
+            android:windowSoftInputMode="adjustPan"
+            />
         <activity android:name=".recovery" />
         <activity android:name=".create_profile" />
         <activity android:name=".edit_profile" />

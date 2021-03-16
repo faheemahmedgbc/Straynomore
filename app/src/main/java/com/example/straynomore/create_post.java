@@ -6,15 +6,51 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class create_post extends AppCompatActivity {
+
+    private Button send;
+    private EditText title, message;
+    private FirebaseDatabase root;
+    private DatabaseReference dbRef;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_post);
+
+        send = findViewById(R.id.btn_send);
+        title = findViewById(R.id.txt_title);
+        message = findViewById(R.id.txt_message);
+
+        mAuth = FirebaseAuth.getInstance();
+        root = FirebaseDatabase.getInstance();
+        dbRef = root.getReference("messages");
+
+        send.setOnClickListener(v -> {
+            String forumTitle = title.getText().toString().trim();
+            String forumMessage = message.getText().toString().trim();
+
+            String user = mAuth.getCurrentUser().getUid();
+
+            ForumHelper forumHelper = new ForumHelper(forumTitle, forumMessage, user);
+
+            Date currentDate = Calendar.getInstance().getTime();
+
+            dbRef.child(String.valueOf(currentDate)).setValue(forumHelper);
+
+        });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 

@@ -21,8 +21,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Home extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +31,11 @@ public class Home extends AppCompatActivity {
         Button logout = findViewById(R.id.btn_logout);
         ImageView profilePic = findViewById(R.id.img_profile_image);
 
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        mAuth = FirebaseAuth.getInstance();
+        assert user != null;
         Uri image = user.getPhotoUrl();
 
-        profilePic.setImageURI(image);
 
         logout.setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));

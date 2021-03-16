@@ -23,7 +23,6 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class create_profile extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
     private ImageView profilePic;
     private Uri profileUri;
 
@@ -35,16 +34,17 @@ public class create_profile extends AppCompatActivity {
         Button saveProfile = findViewById(R.id.btn_save_profile);
         profilePic = findViewById(R.id.img_profile_pic);
 
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         profilePic.setOnClickListener(v -> {
             Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
             startActivityForResult(gallery, 1000);
 
             UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
-                    .setPhotoUri(profileUri).build();
+                    .setPhotoUri(Uri.parse("https://firebasestorage.googleapis.com/v0/b/straynomore-c0efc.appspot.com/o/535de1c74790e1a.jpg?alt=media&token=a3932f58-344b-4e0a-92ae-af1505388b6c")).build();
 
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            FirebaseUser user = mAuth.getCurrentUser();
+            assert user != null;
             user.updateProfile(profileUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
@@ -87,6 +87,7 @@ public class create_profile extends AppCompatActivity {
         {
             if(resultCode == Activity.RESULT_OK)
             {
+                assert data != null;
                 Uri profileImg = data.getData();
                 profilePic.setImageURI(profileImg);
                 profileUri = profileImg;
