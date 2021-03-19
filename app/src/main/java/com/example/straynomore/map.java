@@ -1,3 +1,7 @@
+/* Project: Stray No More
+   Group: Faheem Ahmed,Edward Philip, Abdirahman Ali, Muhammed Yilmaz
+   Description: This activity is the display of the map. It will show the animals location and
+    the location of nearby animal shelters as well as a button that links to the wildlife info*/
 package com.example.straynomore;
 
 import androidx.annotation.NonNull;

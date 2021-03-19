@@ -1,3 +1,6 @@
+/* Project: Stray No More
+   Group: Faheem Ahmed,Edward Philip, Abdirahman Ali, Muhammed Yilmaz
+   Description: This activity is forum initialisation which helps in creating/retrieving forum info */
 package com.example.straynomore;
 
 public class ForumHelper {

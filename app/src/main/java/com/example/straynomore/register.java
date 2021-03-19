@@ -1,3 +1,6 @@
+/* Project: Stray No More
+   Group: Faheem Ahmed,Edward Philip, Abdirahman Ali, Muhammed Yilmaz
+   Description: This activity is the recovery information that will allow user to recover info. */
 package com.example.straynomore;
 
 import androidx.annotation.NonNull;

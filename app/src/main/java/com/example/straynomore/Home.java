@@ -1,3 +1,6 @@
+/* Project: Stray No More
+   Group: Faheem Ahmed,Edward Philip, Abdirahman Ali, Muhammed Yilmaz
+   Description: This activity is the home page where the user profile is shown. Navigation is on all pages as well */
 package com.example.straynomore;
 
 import androidx.annotation.NonNull;

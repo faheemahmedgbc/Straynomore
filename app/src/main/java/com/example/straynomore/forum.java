@@ -1,3 +1,6 @@
+/* Project: Stray No More
+   Group: Faheem Ahmed,Edward Philip, Abdirahman Ali, Muhammed Yilmaz
+   Description: This activity is where user will be able to chat with others regarding animals */
 package com.example.straynomore;
 
 import androidx.annotation.NonNull;
