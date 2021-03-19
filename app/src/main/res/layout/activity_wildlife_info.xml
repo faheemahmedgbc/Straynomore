@@ -53,132 +53,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn_cat"
-        android:layout_width="120dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/btn_bg"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Cat"
-        android:textAllCaps="false"
-        android:textColor="#fff"
-        android:textSize="18dp"
-        app:backgroundTint="#F5DD3E57"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wildInfo"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btn_hamster"
-        android:layout_width="120dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="56dp"
-        android:background="@drawable/btn_bg"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Hamster"
-        android:textAllCaps="false"
-        android:textColor="#fff"
-        android:textSize="18dp"
-        app:backgroundTint="#F5DD3E57"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_rabbit"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btn_guinea"
-        android:layout_width="120dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="256dp"
-        android:layout_marginLeft="256dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/btn_bg"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Guinea Pig"
-        android:textAllCaps="false"
-        android:textColor="#fff"
-        android:textSize="18dp"
-        app:backgroundTint="#F5DD3E57"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wildInfo"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btn_turtle"
-        android:layout_width="120dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="256dp"
-        android:layout_marginLeft="256dp"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/btn_bg"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Turtle"
-        android:textAllCaps="false"
-        android:textColor="#fff"
-        android:textSize="18dp"
-        app:backgroundTint="#F5DD3E57"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_guinea"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btn_ferret"
-        android:layout_width="120dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="256dp"
-        android:layout_marginLeft="256dp"
-        android:layout_marginTop="76dp"
-        android:background="@drawable/btn_bg"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Ferret"
-        android:textAllCaps="false"
-        android:textColor="#fff"
-        android:textSize="18dp"
-        app:backgroundTint="#F5DD3E57"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_turtle"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btn_rabbit"
-        android:layout_width="120dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="68dp"
-        android:background="@drawable/btn_bg"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Rabbit"
-        android:textAllCaps="false"
-        android:textColor="#fff"
-        android:textSize="18dp"
-        app:backgroundTint="#F5DD3E57"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_dog"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btn_dog"
-        android:layout_width="120dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/btn_bg"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Dog"
-        android:textAllCaps="false"
-        android:textColor="#fff"
-        android:textSize="18dp"
-        app:backgroundTint="#F5DD3E57"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_cat"
-        tools:ignore="MissingConstraints" />
-
     <ImageView
         android:id="@+id/btn_back_to_map"
         android:layout_width="44dp"
@@ -186,6 +60,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_keyboard_backspace" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/animal_list"
+        android:layout_width="393dp"
+        android:layout_height="570dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wildInfo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
