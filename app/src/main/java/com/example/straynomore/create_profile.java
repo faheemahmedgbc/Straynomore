@@ -1,3 +1,6 @@
+/* Project: Stray No More
+   Group: Faheem Ahmed,Edward Philip, Abdirahman Ali, Muhammed Yilmaz
+   Description: This activity is the initial user profile creation */
 package com.example.straynomore;
 
 import androidx.annotation.NonNull;

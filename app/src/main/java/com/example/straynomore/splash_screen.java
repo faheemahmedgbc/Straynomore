@@ -1,3 +1,6 @@
+/* Project: Stray No More
+   Group: Faheem Ahmed,Edward Philip, Abdirahman Ali, Muhammed Yilmaz
+   Description: This is the splashscreen that gets displayed on initial startup of application */
 package com.example.straynomore;
 
 import androidx.appcompat.app.AppCompatActivity;

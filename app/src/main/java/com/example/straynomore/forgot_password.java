@@ -1,3 +1,6 @@
+/* Project: Stray No More
+   Group: Faheem Ahmed,Edward Philip, Abdirahman Ali, Muhammed Yilmaz
+   Description: This activity contains the forgot password. It will allow user to send an email of forgotten password */
 package com.example.straynomore;
 
 import androidx.appcompat.app.AppCompatActivity;

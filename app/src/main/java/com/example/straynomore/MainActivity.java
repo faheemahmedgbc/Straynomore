@@ -1,3 +1,7 @@
+/* Project: Stray No More
+   Group: Faheem Ahmed,Edward Philip, Abdirahman Ali, Muhammed Yilmaz
+   Description: This activity is the initial login page. The login is authenticated through firebase to verify account information.
+    From this page, user can register or login.*/
 package com.example.straynomore;
 
 import android.content.Intent;

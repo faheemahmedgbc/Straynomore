@@ -1,3 +1,7 @@
+/* Project: Stray No More
+   Group: Faheem Ahmed,Edward Philip, Abdirahman Ali, Muhammed Yilmaz
+   Description: This activity shows the wildlife information and a recycler view that allows
+    users to pick which animal to find information/protocols about */
 package com.example.straynomore;
 
 import androidx.annotation.NonNull;

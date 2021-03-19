@@ -1,3 +1,7 @@
+/* Project: Stray No More
+   Group: Faheem Ahmed,Edward Philip, Abdirahman Ali, Muhammed Yilmaz
+   Description: This activity is contains the forgot password activity where user is can retrieve password */
+
 package com.example.straynomore;
 
 import android.content.Intent;

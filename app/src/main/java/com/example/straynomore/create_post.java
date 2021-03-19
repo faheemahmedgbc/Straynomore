@@ -1,3 +1,6 @@
+/* Project: Stray No More
+   Group: Faheem Ahmed,Edward Philip, Abdirahman Ali, Muhammed Yilmaz
+   Description: This activity is where user creates a post that will be displayed on map */
 package com.example.straynomore;
 
 import androidx.annotation.NonNull;

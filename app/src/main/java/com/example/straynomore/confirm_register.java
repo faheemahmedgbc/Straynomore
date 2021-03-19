@@ -1,3 +1,6 @@
+/* Project: Stray No More
+   Group: Faheem Ahmed,Edward Philip, Abdirahman Ali, Muhammed Yilmaz
+   Description: This is the confirmation activity where user is sent email confirmation */
 package com.example.straynomore;
 
 import androidx.appcompat.app.AppCompatActivity;
