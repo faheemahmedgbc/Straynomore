@@ -23,7 +23,7 @@
         android:textColor="#fff"
         android:textSize="18dp"
         app:backgroundTint="#F5DD3E57"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/txt_username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -36,7 +36,7 @@
         app:menu="@menu/menu" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txt_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
@@ -63,7 +63,7 @@
         android:layout_height="233dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="120dp"
-        app:srcCompat="@drawable/music_icon" />
+        app:srcCompat="@drawable/_35de1c74790e1a" />
 
     <Button
         android:id="@+id/btn_wildlife"
@@ -80,7 +80,7 @@
         android:textColor="#fff"
         android:textSize="18dp"
         app:backgroundTint="#F5DD3E57"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/txt_username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txt_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="80dp"
@@ -34,7 +34,7 @@
         android:textColor="#fff"
         android:textSize="18dp"
         app:backgroundTint="#F5DD3E57"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/txt_username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -66,7 +66,7 @@
         android:fontFamily="@font/poppins_medium"
         android:foregroundTint="#fff"
         android:hint="Password"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:padding="8dp"
         android:textColor="#000000"
         android:textColorHint="#37474F"
@@ -110,7 +110,7 @@
         android:text="Create account"
         android:textColor="#2979FF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView" />
+        app:layout_constraintStart_toEndOf="@+id/txt_username" />
 
     <ImageView
         android:id="@+id/imageView2"

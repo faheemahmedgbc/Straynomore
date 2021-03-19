@@ -72,7 +72,7 @@
         android:textColor="#fff"
         android:textSize="18dp"
         app:backgroundTint="#F5DD3E57"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/txt_username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/map_animal" />
