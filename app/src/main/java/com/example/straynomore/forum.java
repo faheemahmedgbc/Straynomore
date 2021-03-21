@@ -61,6 +61,7 @@ public class forum extends AppCompatActivity {
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NotNull DataSnapshot dataSnapshot) {
+                names.clear();
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     ForumHelper forum = ds.getValue(ForumHelper.class);
                     names.add(forum);
