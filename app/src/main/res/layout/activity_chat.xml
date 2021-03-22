@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#346A05"
+    tools:context=".chat">
+
+    <TextView
+        android:id="@+id/txt_chat_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Title"
+        android:textColor="@color/black"
+        android:textSize="25sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/txt_chat_title"
+        android:layout_marginTop="36dp"
+        android:layout_marginBottom="40dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#346A05"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_chat_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Chat"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Comments"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_gravity="top"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/comment_section"
+                android:layout_width="match_parent"
+                android:layout_height="332dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <EditText
+        android:id="@+id/comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-3dp"
+        android:autofillHints=""
+        android:layout_marginRight="89dp"
+        android:hint="Type here..."
+        android:paddingStart="5dp"
+        android:paddingLeft="5dp"
+        android:textColorHint="@android:color/black" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/btn_send_comment"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="Send"
+        android:id="@+id/btn_send_comment"/>
+</RelativeLayout>

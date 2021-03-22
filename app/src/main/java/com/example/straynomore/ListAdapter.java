@@ -1,6 +1,7 @@
 package com.example.straynomore;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         holder.name.setText(forumHelper.getTitle());
 
         holder.parentLayout.setOnClickListener(v -> {
-            Toast.makeText(context, arrayList.get(position).title, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, chat.class);
+            intent.putExtra("TITLE", forumHelper.getTitle());
+            intent.putExtra("MESSAGE", forumHelper.getMessage());
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            v.getContext().startActivity(intent);
         });
     }
 
