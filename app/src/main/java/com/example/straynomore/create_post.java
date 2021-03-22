@@ -45,13 +45,16 @@ public class create_post extends AppCompatActivity {
             String forumTitle = title.getText().toString().trim();
             String forumMessage = message.getText().toString().trim();
 
+            message.getText().clear();
+            title.getText().clear();
+
             String user = mAuth.getCurrentUser().getUid();
 
             ForumHelper forumHelper = new ForumHelper(forumTitle, forumMessage, user);
 
             Date currentDate = Calendar.getInstance().getTime();
 
-            dbRef.child(String.valueOf(currentDate)).setValue(forumHelper);
+            dbRef.child(forumTitle).setValue(forumHelper);
 
         });
 
