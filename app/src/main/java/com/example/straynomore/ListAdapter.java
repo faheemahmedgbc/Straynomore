@@ -41,6 +41,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             Intent intent = new Intent(context, chat.class);
             intent.putExtra("TITLE", forumHelper.getTitle());
             intent.putExtra("MESSAGE", forumHelper.getMessage());
+            intent.putExtra("IMAGE", forumHelper.getImage());
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             v.getContext().startActivity(intent);
         });

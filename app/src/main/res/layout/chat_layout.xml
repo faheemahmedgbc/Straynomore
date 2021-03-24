@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:textSize="30sp"
+        android:textColor="@color/black"
         android:text="Username" />
 
     <TextView
@@ -18,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_user"
         android:layout_marginLeft="10dp"
+        android:textColor="@color/black"
         android:text="Comment" />
 
     <View
