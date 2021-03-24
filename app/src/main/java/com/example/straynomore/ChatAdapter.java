@@ -23,12 +23,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-
+// this chat adapter class is for the recyclerview.
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
 
     private Context context;
     private ArrayList<CommentHelper> arrayList;
 
+    //constructor for chatAdapter
     public ChatAdapter(ArrayList<CommentHelper> arrayList, Context context)
     {
         this.arrayList = arrayList;
@@ -51,11 +52,12 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder>{
         holder.comment.setText(helper.getComment());
     }
 
+    // gets the size of array
     @Override
     public int getItemCount() {
         return arrayList.size();
     }
-
+    // view holder class that holds the message sent by users.
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView userName, comment;
