@@ -19,11 +19,12 @@
 
     <EditText
         android:id="@+id/txt_title"
-        android:layout_width="154dp"
-        android:layout_height="25dp"
+        android:layout_width="325dp"
+        android:layout_height="50dp"
         android:layout_marginTop="160dp"
-        android:background="#FFFFFF"
-        android:hint="Title"
+        android:hint="Please enter a Title"
+        android:background="@drawable/input_bg"
+        android:fontFamily="@font/poppins_medium"
         android:inputType="textLongMessage"
         android:textColorHint="@color/black"
         android:textColor="@color/black"
@@ -33,13 +34,14 @@
 
     <EditText
         android:id="@+id/txt_message"
-        android:layout_width="279dp"
-        android:layout_height="186dp"
+        android:layout_width="325dp"
+        android:layout_height="300dp"
         android:layout_marginTop="28dp"
-        android:background="#FFFFFF"
+        android:background="@drawable/input_bg"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Type Message..."
+        android:hint="Please enter a brief description..."
+        android:fontFamily="@font/poppins_medium"
         android:inputType="textMultiLine"
         android:textColorHint="@color/black"
         android:textColor="@color/black"
@@ -49,11 +51,29 @@
 
     <Button
         android:id="@+id/btn_send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="141dp"
+        android:layout_height="50dp"
         android:layout_marginTop="32dp"
-        android:text="Send"
+        android:background="@drawable/btn_bg"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Create Posting"
+        android:textColor="#fff"
+        app:backgroundTint="#F5DD3E57"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_message" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Posting"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        app:layout_constraintBottom_toTopOf="@+id/txt_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
