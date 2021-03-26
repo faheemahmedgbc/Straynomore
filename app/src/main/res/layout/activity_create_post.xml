@@ -86,6 +86,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_title" />
 
+            <EditText
+                android:id="@+id/txt_address"
+                android:layout_width="325dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/input_bg"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="Please enter address"
+                android:inputType="textLongMessage"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"/>
+
             <Button
                 android:id="@+id/btn_send"
                 android:layout_width="141dp"

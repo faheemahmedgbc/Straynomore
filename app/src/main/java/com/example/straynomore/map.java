@@ -11,10 +11,12 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 
@@ -23,22 +25,41 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class map extends AppCompatActivity {
 
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
     private static MapView mapView;
-
+    private static final String TAG = "MAP";
+    private FirebaseDatabase root;
+    private DatabaseReference dbRef;
+    private FirebaseAuth mAuth;
+    private Marker marker;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         mapView= findViewById(R.id.map_animal);
         Button wildlife = findViewById(R.id.btn_wildlife);
+
+        mAuth = FirebaseAuth.getInstance();
+        root = FirebaseDatabase.getInstance();
+        dbRef = root.getReference("messages");
 
         wildlife.setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(),wildlife_info.class));
@@ -95,7 +116,6 @@ public class map extends AppCompatActivity {
         mapView.onSaveInstanceState(mapViewBundle);
     }
 
-
     public void onMapReady(GoogleMap googleMap) {
 
         googleMap.getUiSettings().setAllGesturesEnabled(true);
@@ -105,8 +125,42 @@ public class map extends AppCompatActivity {
         LatLng toronto= new LatLng(43.67626463077383, -79.41110820189814);
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(toronto,14));
 
+        dbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NotNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    ForumHelper forumHelper;
+                    forumHelper = ds.getValue(ForumHelper.class);
+                    String address = ds.child("address").getValue(String.class);
+                    marker = googleMap.addMarker(new MarkerOptions()
+                            .position(getLocationFromAddress(getApplicationContext(), address))
+                    .title(ds.child("title").getValue(String.class)));
+                    marker.setTag(forumHelper);
+                }
 
+                googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+                        ForumHelper forumHelper;
+                        forumHelper = (ForumHelper) marker.getTag();
 
+                        Intent intent = new Intent(getApplicationContext(), chat.class);
+                        intent.putExtra("TITLE", forumHelper.getTitle());
+                        intent.putExtra("MESSAGE", forumHelper.getMessage());
+                        intent.putExtra("IMAGE", forumHelper.getImage());
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        return false;
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError)
+            {
+                Log.d(TAG, "Failed to connect to database");
+            }
+        });
 
 //        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 //            // TODO: Consider calling
@@ -118,8 +172,6 @@ public class map extends AppCompatActivity {
 //            // for ActivityCompat#requestPermissions for more details.
 //            return;
 //        }
-
-
     }
 
     @Override
@@ -183,9 +235,5 @@ public class map extends AppCompatActivity {
             e.printStackTrace();
         }
         return p1;
-
     }
-
-
-
 }

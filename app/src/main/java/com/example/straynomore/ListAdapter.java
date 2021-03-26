@@ -1,7 +1,10 @@
 package com.example.straynomore;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +15,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     private Context context;
     private ArrayList<ForumHelper> arrayList;
+    private static final String TAG = "ListAdapter";
 
     public ListAdapter(Context context, ArrayList<ForumHelper> arrayList)
     {
@@ -38,10 +46,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         holder.name.setText(forumHelper.getTitle());
 
         holder.parentLayout.setOnClickListener(v -> {
+
             Intent intent = new Intent(context, chat.class);
             intent.putExtra("TITLE", forumHelper.getTitle());
             intent.putExtra("MESSAGE", forumHelper.getMessage());
             intent.putExtra("IMAGE", forumHelper.getImage());
+            intent.putExtra("UID", forumHelper.getUid());
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             v.getContext().startActivity(intent);
         });

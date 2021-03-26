@@ -7,16 +7,17 @@ import android.net.Uri;
 
 public class ForumHelper {
     String title, message, uid;
-    String image;
+    String image, address;
 
     public ForumHelper(){}
 
     //Default constructor for ForumHelper Class
-    public ForumHelper(String title, String message, String uid, String image) {
+    public ForumHelper(String title, String message, String uid, String image, String address) {
         this.title = title;
         this.message = message;
         this.uid = uid;
         this.image = image;
+        this.address = address;
     }
 
     public String getTitle() {
@@ -49,5 +50,13 @@ public class ForumHelper {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

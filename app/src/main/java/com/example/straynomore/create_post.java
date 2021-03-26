@@ -31,11 +31,12 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 public class create_post extends AppCompatActivity {
 
     private Button send;
-    private EditText title, message;
+    private EditText title, message, address;
     private FirebaseDatabase root;
     private DatabaseReference dbRef;
     private StorageReference storageReference;
@@ -52,6 +53,7 @@ public class create_post extends AppCompatActivity {
         send = findViewById(R.id.btn_send);
         title = findViewById(R.id.txt_title);
         message = findViewById(R.id.txt_message);
+        address = findViewById(R.id.txt_address);
         postImg = findViewById(R.id.img_post_img);
 
         mAuth = FirebaseAuth.getInstance();
@@ -69,15 +71,17 @@ public class create_post extends AppCompatActivity {
 
             String forumTitle = title.getText().toString().trim();
             String forumMessage = message.getText().toString().trim();
+            String forumAddress = address.getText().toString().trim();
 
             message.getText().clear();
             title.getText().clear();
+            address.getText().clear();
 
             uploadImg();
 
-            String user = mAuth.getCurrentUser().getUid();
+            String user = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
 
-            ForumHelper forumHelper = new ForumHelper(forumTitle, forumMessage, user, imageString);
+            ForumHelper forumHelper = new ForumHelper(forumTitle, forumMessage, user, imageString, forumAddress);
 
             Date currentDate = Calendar.getInstance().getTime();
 
