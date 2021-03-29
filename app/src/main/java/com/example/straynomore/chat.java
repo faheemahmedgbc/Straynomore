@@ -80,12 +80,12 @@ public class chat extends AppCompatActivity {
 
         delete.setOnClickListener(v -> {
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-            Query applesQuery = ref.child("messages").orderByChild("title").equalTo(msgTitle);
+            Query query = ref.child("messages").orderByChild("title").equalTo(msgTitle);
 
             startActivity(new Intent(getApplicationContext(), forum.class));
             finish();
 
-            applesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NotNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot snapshot: dataSnapshot.getChildren()) {

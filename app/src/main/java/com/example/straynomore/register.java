@@ -4,29 +4,44 @@
 package com.example.straynomore;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.util.Objects;
 
 public class register extends AppCompatActivity {
 
-    FirebaseDatabase root;
-    DatabaseReference dbRef;
-    Spinner userSpinner;
-    EditText username, email, password, conPassword;
+    private FirebaseDatabase root;
+    private DatabaseReference dbRef;
+    private StorageReference storageReference;
+    private Spinner userSpinner;
+    private EditText username, email, password, conPassword;
+    public ImageView profilePic;
+    Uri imageUri;
+    String imageString;
     private FirebaseAuth mAuth;
 
     @Override
@@ -37,17 +52,25 @@ public class register extends AppCompatActivity {
         Button register = findViewById(R.id.btn_register);
 
         mAuth = FirebaseAuth.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference("Images");
 
         userSpinner = findViewById(R.id.user_spinner);
         username = findViewById(R.id.txt_reg_name);
         email = findViewById(R.id.txt_reg_email);
         password = findViewById(R.id.txt_reg_pass);
         conPassword = findViewById(R.id.txt_reg_pass_confirm);
+        profilePic = findViewById(R.id.img_profile);
+
+        profilePic.setOnClickListener(v -> {
+            setPostImg();
+        });
 
         register.setOnClickListener(v -> {
 
             root = FirebaseDatabase.getInstance();
             dbRef = root.getReference("users");
+
+            uploadImg();
 
             String name = username.getText().toString().trim();
             String userEmail = email.getText().toString().trim();
@@ -95,9 +118,9 @@ public class register extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful())
                             {
-                                String user = mAuth.getCurrentUser().getUid();
+                                String user = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
 
-                                UserHelper userHelper = new UserHelper(name, userEmail, conPass, userType);
+                                UserHelper userHelper = new UserHelper(name, userEmail, conPass, userType, imageString);
 
                                 dbRef.child(user).setValue(userHelper);
 
@@ -112,5 +135,45 @@ public class register extends AppCompatActivity {
                         }
                     });
         });
+    }
+
+    private String getExtension(Uri uri)
+    {
+        ContentResolver contentResolver = getContentResolver();
+        MimeTypeMap map = MimeTypeMap.getSingleton();
+        return map.getExtensionFromMimeType(contentResolver.getType(uri));
+    }
+
+    private void uploadImg()
+    {
+        StorageReference reference = storageReference.child(System.currentTimeMillis() + "."
+                + getExtension(imageUri));
+
+        reference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(getApplicationContext(), "Image saved!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        imageString = reference.getName();
+    }
+
+    private void setPostImg()
+    {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null)
+        {
+            imageUri = data.getData();
+            profilePic.setImageURI(imageUri);
+        }
     }
 }

@@ -34,18 +34,6 @@
         android:textColor="#000000"
         android:textColorHint="#F5DD3E57" />
 
-    <EditText
-        android:id="@+id/textView7"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="425dp"
-        android:background="@drawable/input_bg"
-        android:hint="Phone Number"
-        android:padding="8dp"
-        android:textColor="#000000"
-        android:textColorHint="#F5DD3E57" />
-
     <Button
         android:id="@+id/btn_save_profile"
         android:layout_width="227dp"
