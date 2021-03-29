@@ -44,7 +44,6 @@
             android:name=".forum"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".recovery" />
-        <activity android:name=".create_profile" />
         <activity android:name=".edit_profile" />
         <activity android:name=".Home" />
         <activity android:name=".MainActivity" />

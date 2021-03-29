@@ -25,7 +25,7 @@ public class confirm_register extends AppCompatActivity {
 
         Button createProfile = findViewById(R.id.btn_save_profile);
         createProfile.setOnClickListener(v -> {
-            startActivity(new Intent(getApplicationContext(), create_profile.class));
+            startActivity(new Intent(getApplicationContext(), Home.class));
             finish();
         });
     }

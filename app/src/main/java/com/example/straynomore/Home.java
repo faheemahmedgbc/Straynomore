@@ -52,7 +52,7 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        
+
         new Handler().postDelayed(() -> findViewById(R.id.loadingPanel).setVisibility(View.GONE), 1000);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
