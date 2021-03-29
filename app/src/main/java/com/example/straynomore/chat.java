@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -160,6 +163,8 @@ public class chat extends AppCompatActivity {
                     CommentHelper commentHelper = new CommentHelper(nameComment, commentMessage);
 
                     dbRef.child(msgTitle).child("comments").push().setValue(commentHelper);
+                    commentInput.getText().clear();
+                    dismissKeyboard(com.example.straynomore.chat.this);
                 }
 
                 @Override
@@ -168,5 +173,11 @@ public class chat extends AppCompatActivity {
                 }
             });
         });
+    }
+    public void dismissKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (null != activity.getCurrentFocus())
+            imm.hideSoftInputFromWindow(activity.getCurrentFocus()
+                    .getApplicationWindowToken(), 0);
     }
 }
