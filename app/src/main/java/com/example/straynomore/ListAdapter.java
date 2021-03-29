@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -23,6 +25,7 @@ import java.util.Set;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
+    private static final String CHANNEL_ID = "FORUM";
     private Context context;
     private ArrayList<ForumHelper> arrayList;
     private static final String TAG = "ListAdapter";

@@ -4,36 +4,39 @@
 package com.example.straynomore;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.security.cert.CertPathBuilder;
 import java.util.ArrayList;
 
 public class forum extends AppCompatActivity {
 
+    private static final String CHANNEL_ID = "FORUM";
     private ArrayList<ForumHelper> names;
     ListAdapter listAdapter;
     RecyclerView recyclerView;
@@ -41,6 +44,7 @@ public class forum extends AppCompatActivity {
     DatabaseReference dbRef;
     private FirebaseAuth mAuth;
     private static final String TAG = "forum";
+    Boolean showNotification = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,18 +69,50 @@ public class forum extends AppCompatActivity {
             @Override
             public void onDataChange(@NotNull DataSnapshot dataSnapshot) {
                 names.clear();
+                if(showNotification) {
+                    notification();
+                }
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     ForumHelper forum = ds.getValue(ForumHelper.class);
                     names.add(forum);
                 }
                 listAdapter = new ListAdapter(getApplicationContext(), names);
                 recyclerView.setAdapter(listAdapter);
+                //use your Data here
+                showNotification = true;
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError)
             {
                 Log.d(TAG, "Failed to connect to database");
+            }
+        });
+
+        dbRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
@@ -108,5 +144,23 @@ public class forum extends AppCompatActivity {
                         return false;
                     }
                 });
+    }
+
+    private void notification(){
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel("n", "n", NotificationManager.IMPORTANCE_DEFAULT);
+
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "n")
+                .setContentText("A new post!")
+                .setSmallIcon(R.drawable.logo_animal)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
+        managerCompat.notify(999, builder.build());
     }
 }
