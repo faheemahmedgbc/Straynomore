@@ -135,6 +135,7 @@ public class map extends AppCompatActivity {
                     marker = googleMap.addMarker(new MarkerOptions()
                             .position(getLocationFromAddress(getApplicationContext(), address))
                     .title(ds.child("title").getValue(String.class)));
+                    marker.showInfoWindow();
                     marker.setTag(forumHelper);
                 }
 

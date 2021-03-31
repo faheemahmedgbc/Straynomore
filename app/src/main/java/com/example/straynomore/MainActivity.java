@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else
                     {
-                        Toast.makeText(getApplicationContext(), "User", Toast.LENGTH_SHORT)
+                        Toast.makeText(getApplicationContext(), "Incorrect login info", Toast.LENGTH_SHORT)
                                 .show();
                     }
                 }
