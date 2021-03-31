@@ -12,7 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Title"
+        android:text="Forum"
+        android:fontFamily="@font/poppins"
         android:textColor="@color/black"
         android:textSize="25sp" />
 
@@ -48,6 +49,8 @@
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/background"
                 android:text="Chat"
+                android:fontFamily="@font/poppins"
+                android:textStyle="italic"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
@@ -60,6 +63,9 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="15dp"
                 android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:fontFamily="@font/poppins"
                 android:text="Comments" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -93,5 +99,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
+        app:backgroundTint="#F5DD3E57"
+        android:background="@drawable/btn_bg"
+        android:fontFamily="@font/poppins"
         android:text="Send" />
 </RelativeLayout>
