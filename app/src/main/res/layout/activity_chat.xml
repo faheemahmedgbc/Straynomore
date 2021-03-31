@@ -94,13 +94,13 @@
     <Button
         android:id="@+id/btn_send_comment"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_alignRight="@id/btn_send_comment"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        app:backgroundTint="#F5DD3E57"
         android:background="@drawable/btn_bg"
         android:fontFamily="@font/poppins"
-        android:text="Send" />
+        android:text="Send"
+        app:backgroundTint="#F5DD3E57" />
 </RelativeLayout>

@@ -42,7 +42,7 @@
         android:layout_marginTop="490dp"
         android:background="@drawable/btn_bg"
         android:gravity="center"
-        android:text="Create Profile"
+        android:text="Return to Login"
         app:backgroundTint="#F5DD3E57" />
 
     <TextView

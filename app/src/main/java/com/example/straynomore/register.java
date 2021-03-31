@@ -11,6 +11,7 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,6 +45,7 @@ public class register extends AppCompatActivity {
     Uri imageUri;
     String imageString;
     private FirebaseAuth mAuth;
+    private static final String TAG = "register";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,8 +127,16 @@ public class register extends AppCompatActivity {
 
                                 dbRef.child(user).setValue(userHelper);
 
-                                startActivity(new Intent(getApplicationContext(), confirm_register.class));
-                                finish();
+                                mAuth.getCurrentUser().sendEmailVerification()
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                Intent intent = new Intent(getApplicationContext(), confirm_register.class);
+                                                intent.putExtra("EMAIL", userEmail);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+                                        });
                             }
                             else
                             {

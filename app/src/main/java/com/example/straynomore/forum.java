@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 public class forum extends AppCompatActivity {
 
     private static final String CHANNEL_ID = "FORUM";
+    PendingIntent pendingIntent;
     private ArrayList<ForumHelper> names;
     ListAdapter listAdapter;
     RecyclerView recyclerView;
@@ -78,7 +80,6 @@ public class forum extends AppCompatActivity {
                 }
                 listAdapter = new ListAdapter(getApplicationContext(), names);
                 recyclerView.setAdapter(listAdapter);
-                //use your Data here
                 showNotification = true;
             }
 
@@ -144,6 +145,10 @@ public class forum extends AppCompatActivity {
                         return false;
                     }
                 });
+
+        Intent intent = new Intent(this, forum.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
     }
 
     private void notification(){
@@ -158,6 +163,7 @@ public class forum extends AppCompatActivity {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "n")
                 .setContentText("A new post!")
                 .setSmallIcon(R.drawable.logo_animal)
+                .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
 
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);

@@ -25,6 +25,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="60dp"
                 android:text="Registration"
+                android:fontFamily="@font/poppins"
                 android:textAllCaps="true"
                 android:textColor="#000000"
                 android:textSize="30sp"
@@ -36,8 +37,9 @@
 
             <ImageView
                 android:id="@+id/img_profile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="700px"
+                android:layout_height="700px"
+                android:layout_gravity="center"
                 app:srcCompat="@drawable/ic_baseline_image_24" />
 
             <TextView
@@ -46,6 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
+                android:fontFamily="@font/poppins"
                 android:text="Select User type below:"
                 android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -62,6 +65,7 @@
                 android:layout_marginTop="16dp"
                 android:entries="@array/user_array"
                 android:spinnerMode="dropdown"
+                android:fontFamily="@font/poppins"
                 android:theme="@style/ThemeOverlay.AppCompat.Light"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -162,6 +166,7 @@
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 app:backgroundTint="#F5DD3E57"
+                android:layout_marginBottom="150dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.468"
                 app:layout_constraintStart_toStartOf="parent"

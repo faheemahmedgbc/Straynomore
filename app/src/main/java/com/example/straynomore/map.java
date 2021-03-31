@@ -148,6 +148,7 @@ public class map extends AppCompatActivity {
                         intent.putExtra("TITLE", forumHelper.getTitle());
                         intent.putExtra("MESSAGE", forumHelper.getMessage());
                         intent.putExtra("IMAGE", forumHelper.getImage());
+                        intent.putExtra("UID", forumHelper.getUid());
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                         return false;

@@ -17,11 +17,25 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
@@ -29,6 +43,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     private Context context;
     private ArrayList<ForumHelper> arrayList;
     private static final String TAG = "ListAdapter";
+    private FirebaseDatabase root;
+    private DatabaseReference dbRef;
+    private FirebaseAuth mAuth;
+    private String image;
 
     public ListAdapter(Context context, ArrayList<ForumHelper> arrayList)
     {
@@ -47,6 +65,36 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ForumHelper forumHelper = arrayList.get(position);
         holder.name.setText(forumHelper.getTitle());
+
+        mAuth = FirebaseAuth.getInstance();
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        String UID = forumHelper.getUid();
+
+        Log.d(TAG, "UID >>>>> " + UID);
+
+        mAuth = FirebaseAuth.getInstance();
+        root = FirebaseDatabase.getInstance();
+        dbRef = root.getReference("users/" + UID);
+
+        dbRef.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onDataChange(@NotNull DataSnapshot dataSnapshot) {
+                UserHelper userHelper = dataSnapshot.getValue(UserHelper.class);
+                assert userHelper != null;
+                image = userHelper.getImg();
+                Log.d(TAG, "IMAGE >>>>> " + image);
+
+                StorageReference pathReference = storageRef.child("Images/" + image);
+
+                Glide.with(context).load(pathReference).override(700,700).into(holder.imageView);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e(TAG, "onCancelled", databaseError.toException());
+            }
+        });
 
         holder.parentLayout.setOnClickListener(v -> {
 
@@ -68,12 +116,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView name;
+        public CircleImageView imageView;
         RelativeLayout parentLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             name = itemView.findViewById(R.id.txt_list_name);
+            imageView = itemView.findViewById(R.id.list_img);
             parentLayout = itemView.findViewById(R.id.layout);
         }
     }

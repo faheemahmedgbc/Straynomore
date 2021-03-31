@@ -27,6 +27,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -81,8 +82,16 @@ public class MainActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful())
                     {
-                        startActivity(new Intent(MainActivity.this, Home.class));
-                        finish();
+                        if(Objects.requireNonNull(mAuth.getCurrentUser()).isEmailVerified())
+                        {
+                            startActivity(new Intent(MainActivity.this, Home.class));
+                            finish();
+                        }
+                        else
+                        {
+                            Toast.makeText(getApplicationContext(), "Email has not been verified.", Toast.LENGTH_LONG)
+                                    .show();
+                        }
                     }
                     else
                     {

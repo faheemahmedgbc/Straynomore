@@ -76,7 +76,11 @@ public class chat extends AppCompatActivity {
         String image = getIntent().getStringExtra("IMAGE");
         String UID = getIntent().getStringExtra("UID");
 
-        if(!UID.equals(Objects.requireNonNull(mAuth.getCurrentUser()).getUid()))
+        String currentUID = mAuth.getUid();
+
+        Log.d(TAG, "CURRENT USER >>>> " + currentUID + "MESSAGE USER >>>>> " + UID);
+
+        if(!UID.equals(currentUID))
         {
             delete.setVisibility(View.GONE);
         }
