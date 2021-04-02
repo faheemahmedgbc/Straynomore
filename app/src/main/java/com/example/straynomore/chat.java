@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+//This is the chat class that is responsible for the components of our chat feature in the app.
 public class chat extends AppCompatActivity {
 
     private TextView chat, title, name;
@@ -36,6 +37,9 @@ public class chat extends AppCompatActivity {
     private ArrayList<CommentHelper> commentHelpers;
     private static final String TAG = "chat";
 
+
+    //onCreate function calls and recreates activity and load all data.
+    //below are the instances of the title,chat,name,send comment, comment input, and the recycler view.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +75,7 @@ public class chat extends AppCompatActivity {
         String ID = commentRef.push().getKey();
 
         commentRef.addValueEventListener(new ValueEventListener() {
+            //this function is for when data changes, for example when the user edits the info. It returns a data snapshot ( read only copy of the firebase state).
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 commentHelpers.clear();
@@ -86,6 +91,7 @@ public class chat extends AppCompatActivity {
                 }
             }
 
+            // called if listener is unsuccessful for any reason
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
