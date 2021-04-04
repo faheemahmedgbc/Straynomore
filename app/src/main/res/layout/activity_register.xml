@@ -81,7 +81,7 @@
                 android:drawablePadding="8dp"
                 android:ems="10"
                 android:fontFamily="@font/poppins_medium"
-                android:hint="Fullname"
+                android:hint="Display Name/Organization"
                 android:inputType="textPersonName"
                 android:padding="8dp"
                 android:textColor="#000000"

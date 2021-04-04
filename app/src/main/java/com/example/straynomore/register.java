@@ -12,7 +12,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -64,6 +66,25 @@ public class register extends AppCompatActivity {
         conPassword = findViewById(R.id.txt_reg_pass_confirm);
         profilePic = findViewById(R.id.img_profile);
 
+        userSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(id != 0)
+                {
+                    profilePic.setVisibility(View.GONE);
+                }
+                else
+                {
+                    profilePic.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         profilePic.setOnClickListener(v -> {
             setPostImg();
         });
@@ -79,7 +100,6 @@ public class register extends AppCompatActivity {
             String userEmail = email.getText().toString().trim();
             String pass = password.getText().toString().trim();
             String conPass = conPassword.getText().toString().trim();
-
             String userType = userSpinner.getSelectedItem().toString();
 
             if(name.isEmpty())

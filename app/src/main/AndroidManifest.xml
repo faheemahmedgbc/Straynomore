@@ -16,7 +16,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".chat"></activity>
+        <activity android:name=".MyPosts"></activity>
+        <activity android:name=".chat" />
 
         <uses-library android:name="com.google.android.maps" />
         <uses-library
