@@ -3,7 +3,7 @@
    Description: This activity is contains the forgot password activity where user is can retrieve password */
 
 package com.example.straynomore;
-
+//this class is for if a user forgets their password and hits the forgot password button.
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;

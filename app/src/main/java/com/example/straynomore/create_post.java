@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 import java.util.Date;
-
+// this class is contains functionality for creating posts about your missing animal on the app
 public class create_post extends AppCompatActivity {
 
     private Button send;
@@ -27,7 +27,7 @@ public class create_post extends AppCompatActivity {
     private FirebaseDatabase root;
     private DatabaseReference dbRef;
     private FirebaseAuth mAuth;
-
+// we have a send button, a title text, and a message text.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +57,7 @@ public class create_post extends AppCompatActivity {
             dbRef.child(forumTitle).setValue(forumHelper);
 
         });
-
+// below is the bottom bar navigation for the app to quickly access different pages like the home page, forum page, create post page.
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
         bottomNavigationView.setSelectedItemId(R.id.create_post);

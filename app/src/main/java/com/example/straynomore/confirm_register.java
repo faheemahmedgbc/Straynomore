@@ -9,7 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
-
+//this class confirms user registrations
+// It displays the users email address with a message telling the user to check their mail.
 public class confirm_register extends AppCompatActivity {
 
     @Override
