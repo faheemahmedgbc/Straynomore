@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -28,12 +29,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.security.cert.CertPathBuilder;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class forum extends AppCompatActivity {
 
@@ -53,8 +56,6 @@ public class forum extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum);
 
-        TextView test = findViewById(R.id.txt_test);
-
         names = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
 
@@ -65,58 +66,68 @@ public class forum extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         root = FirebaseDatabase.getInstance();
-        dbRef = root.getReference("messages");
 
-        dbRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NotNull DataSnapshot dataSnapshot) {
-                names.clear();
-                if(showNotification) {
-                    notification();
+        String UID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+
+        if(getIntent().getStringExtra("POST_TITLE") == null)
+        {
+            dbRef = root.getReference("messages");
+
+            dbRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NotNull DataSnapshot dataSnapshot) {
+                    names.clear();
+                    if(showNotification) {
+                        notification();
+                    }
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        ForumHelper forum = ds.getValue(ForumHelper.class);
+                        names.add(forum);
+                    }
+                    listAdapter = new ListAdapter(getApplicationContext(), names);
+                    recyclerView.setAdapter(listAdapter);
+                    showNotification = true;
                 }
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    ForumHelper forum = ds.getValue(ForumHelper.class);
-                    names.add(forum);
+
+                @Override
+                public void onCancelled(DatabaseError databaseError)
+                {
+                    Log.d(TAG, "Failed to connect to database");
                 }
-                listAdapter = new ListAdapter(getApplicationContext(), names);
-                recyclerView.setAdapter(listAdapter);
-                showNotification = true;
-            }
+            });
+        }
+        else
+        {
+            dbRef = root.getReference("messages");
 
-            @Override
-            public void onCancelled(DatabaseError databaseError)
-            {
-                Log.d(TAG, "Failed to connect to database");
-            }
-        });
+            dbRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NotNull DataSnapshot dataSnapshot) {
+                    names.clear();
+                    if(showNotification) {
+                        notification();
+                    }
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        ForumHelper forum = ds.getValue(ForumHelper.class);
+                        assert forum != null;
+                        if (forum.getUid().equals(UID))
+                         {
+                             names.add(forum);
+                         }
 
-        dbRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    }
+                    listAdapter = new ListAdapter(getApplicationContext(), names);
+                    recyclerView.setAdapter(listAdapter);
+                    showNotification = true;
+                }
 
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
+                @Override
+                public void onCancelled(DatabaseError databaseError)
+                {
+                    Log.d(TAG, "Failed to connect to database");
+                }
+            });
+        }
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 

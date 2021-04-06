@@ -58,6 +58,7 @@ public class Home extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
         Button logout = findViewById(R.id.btn_logout);
+        Button myPosts = findViewById(R.id.btn_myposts);
         ImageView profilePic = findViewById(R.id.img_profile_image);
         username = findViewById(R.id.txt_username);
 
@@ -90,6 +91,12 @@ public class Home extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
                 Log.e(TAG, "onCancelled", databaseError.toException());
             }
+        });
+
+        myPosts.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), forum.class);
+            intent.putExtra("POST_TITLE", "null");
+            startActivity(intent);
         });
 
         logout.setOnClickListener(v -> {

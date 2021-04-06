@@ -233,6 +233,20 @@ public class map extends AppCompatActivity {
             }
         });
 
+        Marker shelter = googleMap.addMarker(new MarkerOptions()
+                .position(getLocationFromAddress(getApplicationContext(), "810 Dupont St, Toronto"))
+                .title("Paws to the Wall")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+
+        shelter.showInfoWindow();
+
+        Marker control = googleMap.addMarker(new MarkerOptions()
+                .position(getLocationFromAddress(getApplicationContext(), "530 Keele St, Toronto"))
+                .title("Pest Animal Removal Toronto")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+
+        control.showInfoWindow();
+
 //        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 //            // TODO: Consider calling
 //            //    ActivityCompat#requestPermissions
@@ -243,6 +257,7 @@ public class map extends AppCompatActivity {
 //            // for ActivityCompat#requestPermissions for more details.
 //            return;
 //        }
+        
     }
 
     @Override

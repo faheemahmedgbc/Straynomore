@@ -65,7 +65,7 @@
         app:srcCompat="@drawable/ic_baseline_image_24" />
 
     <Button
-        android:id="@+id/btn_wildlife"
+        android:id="@+id/btn_myposts"
         android:layout_width="175dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
