@@ -20,6 +20,13 @@ public class ForumHelper {
         this.address = address;
     }
 
+    public ForumHelper(String title, String message, String uid, String image) {
+        this.title = title;
+        this.message = message;
+        this.uid = uid;
+        this.image = image;
+    }
+
     public String getTitle() {
         return title;
     }

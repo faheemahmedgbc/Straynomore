@@ -42,6 +42,7 @@ public class create_post extends AppCompatActivity {
     private StorageReference storageReference;
     private FirebaseAuth mAuth;
     private ImageView postImg;
+    private ForumHelper forumHelper;
     Uri imageUri;
     String imageString;
 
@@ -81,7 +82,12 @@ public class create_post extends AppCompatActivity {
 
             String user = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
 
-            ForumHelper forumHelper = new ForumHelper(forumTitle, forumMessage, user, imageString, forumAddress);
+            if(forumAddress.equals(""))
+            {
+               forumAddress = "null";
+            }
+
+            forumHelper = new ForumHelper(forumTitle, forumMessage, user, imageString, forumAddress);
 
             Date currentDate = Calendar.getInstance().getTime();
 

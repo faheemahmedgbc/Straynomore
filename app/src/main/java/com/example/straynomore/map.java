@@ -179,10 +179,15 @@ public class map extends AppCompatActivity {
                     ForumHelper forumHelper;
                     forumHelper = ds.getValue(ForumHelper.class);
                     String address = ds.child("address").getValue(String.class);
-                    marker = googleMap.addMarker(new MarkerOptions()
-                            .position(getLocationFromAddress(getApplicationContext(), address))
-                    .title(ds.child("title").getValue(String.class)));
-                    marker.setTag(forumHelper);
+ 
+                    assert address != null;
+                    if(!address.equals("null"))
+                    {
+                        marker = googleMap.addMarker(new MarkerOptions()
+                                .position(getLocationFromAddress(getApplicationContext(), address))
+                                .title(ds.child("title").getValue(String.class)));
+                        marker.setTag(forumHelper);
+                    }
                 }
 
                 marker.showInfoWindow();

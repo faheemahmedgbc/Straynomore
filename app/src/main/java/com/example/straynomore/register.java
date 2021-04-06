@@ -94,13 +94,16 @@ public class register extends AppCompatActivity {
             root = FirebaseDatabase.getInstance();
             dbRef = root.getReference("users");
 
-            uploadImg();
-
             String name = username.getText().toString().trim();
             String userEmail = email.getText().toString().trim();
             String pass = password.getText().toString().trim();
             String conPass = conPassword.getText().toString().trim();
             String userType = userSpinner.getSelectedItem().toString();
+
+            if(userType.equals("Pet Owner"))
+            {
+                uploadImg();
+            }
 
             if(name.isEmpty())
             {
@@ -142,6 +145,15 @@ public class register extends AppCompatActivity {
                             if (task.isSuccessful())
                             {
                                 String user = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+
+                                if(userType.equals("Animal Shelter"))
+                                {
+                                    imageString = "services/AnimalShelter.png";
+                                }
+                                else if(userType.equals("Animal Control"))
+                                {
+                                    imageString = "services/PetControl.png";
+                                }
 
                                 UserHelper userHelper = new UserHelper(name, userEmail, conPass, userType, imageString);
 
