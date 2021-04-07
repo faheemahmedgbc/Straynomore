@@ -1,3 +1,6 @@
+/* Project: Stray No More
+   Group: Faheem Ahmed,Edward Philip, Abdirahman Ali, Muhammed Yilmaz
+   Description: This activity is used for setting location of animal shelters/animal control */
 package com.example.straynomore;
 
 public class Control {

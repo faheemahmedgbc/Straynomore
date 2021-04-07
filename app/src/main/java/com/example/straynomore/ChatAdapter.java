@@ -1,3 +1,6 @@
+/* Project: Stray No More
+   Group: Faheem Ahmed,Edward Philip, Abdirahman Ali, Muhammed Yilmaz
+   Description: This is the chat adapter which assists in creation of chat */
 package com.example.straynomore;
 
 import android.content.Context;

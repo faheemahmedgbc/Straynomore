@@ -1,3 +1,6 @@
+/* Project: Stray No More
+   Group: Faheem Ahmed,Edward Philip, Abdirahman Ali, Muhammed Yilmaz
+   Description: This activity is the my posts activity which holds the posts */
 package com.example.straynomore;
 
 import androidx.appcompat.app.AppCompatActivity;

@@ -1,3 +1,6 @@
+/* Project: Stray No More
+   Group: Faheem Ahmed,Edward Philip, Abdirahman Ali, Muhammed Yilmaz
+   Description: This activity contains the info adapter for animals located in the wildlife info */
 package com.example.straynomore;
 
 import android.app.Activity;
