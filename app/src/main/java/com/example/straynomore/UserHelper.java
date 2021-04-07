@@ -3,15 +3,16 @@ package com.example.straynomore;
 import com.google.firebase.firestore.auth.User;
 
 public class UserHelper {
-    String name, email, password, userType;
+    String name, email, password, userType, img;
 
     public UserHelper(){}
 
-    public UserHelper(String name, String email, String password, String userType) {
+    public UserHelper(String name, String email, String password, String userType, String img) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.userType = userType;
+        this.img = img;
     }
 
     public String getName() {
@@ -44,5 +45,13 @@ public class UserHelper {
 
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }

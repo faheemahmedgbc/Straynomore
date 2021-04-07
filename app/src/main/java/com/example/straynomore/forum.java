@@ -4,23 +4,27 @@
 package com.example.straynomore;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,10 +34,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.security.cert.CertPathBuilder;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class forum extends AppCompatActivity {
 
+    private static final String CHANNEL_ID = "FORUM";
+    PendingIntent pendingIntent;
     private ArrayList<ForumHelper> names;
     ListAdapter listAdapter;
     RecyclerView recyclerView;
@@ -41,13 +49,12 @@ public class forum extends AppCompatActivity {
     DatabaseReference dbRef;
     private FirebaseAuth mAuth;
     private static final String TAG = "forum";
+    Boolean showNotification = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum);
-
-        TextView test = findViewById(R.id.txt_test);
 
         names = new ArrayList<>();
         mAuth = FirebaseAuth.getInstance();
@@ -59,27 +66,68 @@ public class forum extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         root = FirebaseDatabase.getInstance();
-        dbRef = root.getReference("messages");
 
-        dbRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NotNull DataSnapshot dataSnapshot) {
-                names.clear();
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    ForumHelper forum = ds.getValue(ForumHelper.class);
-                    names.add(forum);
+        String UID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+
+        if(getIntent().getStringExtra("POST_TITLE") == null)
+        {
+            dbRef = root.getReference("messages");
+
+            dbRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NotNull DataSnapshot dataSnapshot) {
+                    names.clear();
+                    if(showNotification) {
+                        notification();
+                    }
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        ForumHelper forum = ds.getValue(ForumHelper.class);
+                        names.add(forum);
+                    }
+                    listAdapter = new ListAdapter(getApplicationContext(), names);
+                    recyclerView.setAdapter(listAdapter);
+                    showNotification = true;
                 }
-                listAdapter = new ListAdapter(getApplicationContext(), names);
-                recyclerView.setAdapter(listAdapter);
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError)
-            {
-                Log.d(TAG, "Failed to connect to database");
-            }
-        });
+                @Override
+                public void onCancelled(DatabaseError databaseError)
+                {
+                    Log.d(TAG, "Failed to connect to database");
+                }
+            });
+        }
+        else
+        {
+            dbRef = root.getReference("messages");
 
+            dbRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NotNull DataSnapshot dataSnapshot) {
+                    names.clear();
+                    if(showNotification) {
+                        notification();
+                    }
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        ForumHelper forum = ds.getValue(ForumHelper.class);
+                        assert forum != null;
+                        if (forum.getUid().equals(UID))
+                         {
+                             names.add(forum);
+                         }
+
+                    }
+                    listAdapter = new ListAdapter(getApplicationContext(), names);
+                    recyclerView.setAdapter(listAdapter);
+                    showNotification = true;
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError)
+                {
+                    Log.d(TAG, "Failed to connect to database");
+                }
+            });
+        }
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
@@ -108,5 +156,28 @@ public class forum extends AppCompatActivity {
                         return false;
                     }
                 });
+
+        Intent intent = new Intent(this, forum.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+    }
+
+    private void notification(){
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel("n", "n", NotificationManager.IMPORTANCE_DEFAULT);
+
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "n")
+                .setContentText("A new post!")
+                .setSmallIcon(R.drawable.logo_animal)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
+        managerCompat.notify(999, builder.build());
     }
 }

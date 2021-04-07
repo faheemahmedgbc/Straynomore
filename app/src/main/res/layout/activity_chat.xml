@@ -12,9 +12,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Title"
+        android:text="Forum"
+        android:fontFamily="@font/poppins"
         android:textColor="@color/black"
         android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -26,8 +33,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#346A05"
             android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/postedImg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                app:srcCompat="@drawable/ic_baseline_home" />
 
             <TextView
                 android:id="@+id/txt_chat_message"
@@ -36,6 +49,8 @@
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/background"
                 android:text="Chat"
+                android:fontFamily="@font/poppins"
+                android:textStyle="italic"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
@@ -47,6 +62,10 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="15dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:fontFamily="@font/poppins"
                 android:text="Comments" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -66,18 +85,22 @@
         android:layout_marginRight="89dp"
         android:layout_marginBottom="-3dp"
         android:autofillHints=""
+        android:background="#814E4D4D"
         android:hint="Type here..."
-        android:paddingStart="5dp"
-        android:paddingLeft="5dp"
-        android:textColorHint="@android:color/black" />
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="10dp" />
 
     <Button
         android:id="@+id/btn_send_comment"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_alignRight="@id/btn_send_comment"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:text="Send" />
+        android:background="@drawable/btn_bg"
+        android:fontFamily="@font/poppins"
+        android:text="Send"
+        app:backgroundTint="#F5DD3E57" />
 </RelativeLayout>

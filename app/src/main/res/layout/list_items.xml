@@ -23,6 +23,8 @@
         android:text="Username"
         android:textColor="@color/black"
         android:textSize="30sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/poppins"
         android:layout_toEndOf="@id/list_img" />
 
     <View

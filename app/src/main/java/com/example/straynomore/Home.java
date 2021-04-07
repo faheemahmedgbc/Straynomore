@@ -10,37 +10,97 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public class Home extends AppCompatActivity {
+
+    private FirebaseDatabase root;
+    private DatabaseReference dbRef;
+    private FirebaseAuth mAuth;
+    private TextView username;
+    String image;
+    private static final String TAG = "Home";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        new Handler().postDelayed(() -> findViewById(R.id.loadingPanel).setVisibility(View.GONE), 1000);
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
         Button logout = findViewById(R.id.btn_logout);
+        Button myPosts = findViewById(R.id.btn_myposts);
         ImageView profilePic = findViewById(R.id.img_profile_image);
+        username = findViewById(R.id.txt_username);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        assert user != null;
-        Uri image = user.getPhotoUrl();
+        mAuth = FirebaseAuth.getInstance();
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        String UID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
 
+        Log.d(TAG, "UID >>>>> " + UID);
+
+        mAuth = FirebaseAuth.getInstance();
+        root = FirebaseDatabase.getInstance();
+        dbRef = root.getReference("users/" + UID);
+
+        dbRef.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onDataChange(@NotNull DataSnapshot dataSnapshot) {
+                UserHelper userHelper = dataSnapshot.getValue(UserHelper.class);
+                assert userHelper != null;
+                image = userHelper.getImg();
+                username.setText("Welcome " + userHelper.getName() + "!");
+                Log.d(TAG, "IMAGE >>>>> " + image);
+
+                StorageReference pathReference = storageRef.child("Images/" + image);
+
+                Glide.with(getApplicationContext()).load(pathReference).override(700,700).into(profilePic);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e(TAG, "onCancelled", databaseError.toException());
+            }
+        });
+
+        myPosts.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), forum.class);
+            intent.putExtra("POST_TITLE", "null");
+            startActivity(intent);
+        });
 
         logout.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         });

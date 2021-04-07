@@ -5,7 +5,7 @@
     android:id="@+id/create_post"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_background"
+    android:background="@drawable/background__3_"
     tools:context=".create_post">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -17,63 +17,105 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu" />
 
-    <EditText
-        android:id="@+id/txt_title"
-        android:layout_width="325dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="160dp"
-        android:hint="Please enter a Title"
-        android:background="@drawable/input_bg"
-        android:fontFamily="@font/poppins_medium"
-        android:inputType="textLongMessage"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="100dp">
 
-    <EditText
-        android:id="@+id/txt_message"
-        android:layout_width="325dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/input_bg"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Please enter a brief description..."
-        android:fontFamily="@font/poppins_medium"
-        android:inputType="textMultiLine"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_title" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_send"
-        android:layout_width="141dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/btn_bg"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Create Posting"
-        android:textColor="#fff"
-        app:backgroundTint="#F5DD3E57"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_message" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:text="Create Posting"
+                android:textAllCaps="true"
+                android:textColor="#000000"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create Posting"
-        android:textColor="#000000"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:textAllCaps="true"
-        app:layout_constraintBottom_toTopOf="@+id/txt_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/img_post_img"
+                android:layout_width="700px"
+                android:layout_height="700px"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                app:srcCompat="@drawable/ic_baseline_image_24" />
+
+            <EditText
+                android:id="@+id/txt_title"
+                android:layout_width="325dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/input_bg"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="Please enter a Title"
+                android:inputType="textLongMessage"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/txt_message"
+                android:layout_width="325dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/input_bg"
+                android:ems="10"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="start|top"
+                android:hint="Please enter a brief description..."
+                android:inputType="textMultiLine"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_title" />
+
+            <EditText
+                android:id="@+id/txt_address"
+                android:layout_width="325dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/input_bg"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="Please enter address"
+                android:inputType="textLongMessage"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"/>
+
+            <Button
+                android:id="@+id/btn_send"
+                android:layout_width="141dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="100dp"
+                android:background="@drawable/btn_bg"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Create Posting"
+                android:textColor="#fff"
+                app:backgroundTint="#F5DD3E57"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_message" />
+
+
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
