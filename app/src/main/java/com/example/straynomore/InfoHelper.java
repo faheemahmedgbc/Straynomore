@@ -1,3 +1,6 @@
+/* Project: Stray No More
+   Group: Faheem Ahmed,Edward Philip, Abdirahman Ali, Muhammed Yilmaz
+   Description: This activity constructs the info for the animals */
 package com.example.straynomore;
 
 public class InfoHelper {

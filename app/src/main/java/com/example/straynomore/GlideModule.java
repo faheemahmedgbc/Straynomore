@@ -1,3 +1,6 @@
+/* Project: Stray No More
+   Group: Faheem Ahmed,Edward Philip, Abdirahman Ali, Muhammed Yilmaz
+   Description: This activity contains glide module which helps in the image placement for users */
 package com.example.straynomore;
 
 import android.content.Context;

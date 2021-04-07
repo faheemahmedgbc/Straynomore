@@ -1,3 +1,7 @@
+/* Project: Stray No More
+   Group: Faheem Ahmed,Edward Philip, Abdirahman Ali, Muhammed Yilmaz
+   Description: This activity is the chat activity which holds the recycler view and displays the chat
+    by obtaining the messages from the database based on the user*/
 package com.example.straynomore;
 
 import androidx.annotation.NonNull;

@@ -1,3 +1,6 @@
+/* Project: Stray No More
+   Group: Faheem Ahmed,Edward Philip, Abdirahman Ali, Muhammed Yilmaz
+   Description: This activity is the list adapter for populating the list  */
 package com.example.straynomore;
 
 import android.annotation.SuppressLint;
